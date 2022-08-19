@@ -1,4 +1,4 @@
-const { default: $ } = require("webdriverio/build/commands/browser/$");
+
 
 class LoginPage {
    get accountButtonHome () {return $('[id="navbarAccount"]')};

@@ -1,4 +1,3 @@
-const { default: $ } = require("webdriverio/build/commands/browser/$");
 
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
