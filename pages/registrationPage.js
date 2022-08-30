@@ -1,0 +1,23 @@
+let BasePage = require("../pages/basePage.js")
+
+class Registration extends BasePage {
+    get emailField() {return $("#emailControl")};
+    get passwordField() {return $("#passwordControl")};
+    get repeatPasswordField() {return $("#repeatPasswordControl")};
+    get securityQuestionButton(){return $("#mat-select-value-3")};
+    get securityQuestion(){return $('//*[contains(text(), "maiden name")]')};
+    get securityAnswer(){return $("#securityAnswerControl")};
+    get registerButton(){return $('button[id="registerButton"]')};
+
+    async registration(email, password){
+        await this.emailField.setValue(email);
+        await this.passwordField.setValue(password);
+        await this.repeatPasswordField.setValue(password);
+        await this.securityQuestionButton.click();
+        await this.securityQuestion.click();
+        await this.securityAnswer.setValue("mom");
+        await this.registerButton.click();
+    }
+}
+
+module.exports = new Registration();
