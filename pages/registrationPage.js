@@ -4,7 +4,7 @@ class Registration extends BasePage {
     get emailField() {return $("#emailControl")};
     get passwordField() {return $("#passwordControl")};
     get repeatPasswordField() {return $("#repeatPasswordControl")};
-    get securityQuestionButton(){return $("#mat-select-value-3")};
+    get securityQuestionButton(){return $("//div[starts-with(@id, 'mat-select-value')]")};
     get securityQuestion(){return $('//*[contains(text(), "maiden name")]')};
     get securityAnswer(){return $("#securityAnswerControl")};
     get registerButton(){return $('button[id="registerButton"]')};

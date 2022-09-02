@@ -7,6 +7,7 @@ class LoginPage extends BasePage {
    get password() {return $('[id="password"]')};
    get loginButton() {return $('[id="loginButton"]')};
    get registrationButton() {return $('[href="#/register"')};
+   
 
    async login(email, passw) {
     await this.email.setValue(email);

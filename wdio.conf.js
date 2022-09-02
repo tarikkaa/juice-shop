@@ -112,7 +112,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: [
-        ['selenium-standalone', { drivers: { firefox: "latest", chrome: "latest"} }]
+        ['selenium-standalone', { drivers: {firefox: "latest", chrome: '105.0.5195.52'} }]
     ],
     
     // Framework you want to run your specs with.
@@ -198,7 +198,7 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    before: function (capabilities, specs) {
+    before: function () {
         console.log("Test started !");
     },
     /**
