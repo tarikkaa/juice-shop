@@ -19,7 +19,7 @@ class BasePage{
     async logOut() {
         await this.accountButtonHeader.click();
         await this.logoutButtonHeader.click();
-    }
+    };
 }
 
 module.exports = BasePage;
