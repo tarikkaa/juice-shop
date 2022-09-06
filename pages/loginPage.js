@@ -7,6 +7,7 @@ class LoginPage extends BasePage {
    get password() {return $('[id="password"]')};
    get loginButton() {return $('[id="loginButton"]')};
    get registrationButton() {return $('[href="#/register"')};
+   get baseElement() {return $('[href="#/register"')};
    
 
    async login(email, passw) {
@@ -19,6 +20,10 @@ class LoginPage extends BasePage {
       await this.registrationButton.waitForClickable();
       await this.registrationButton.click();
    };
+
+   async waitForPageAvailable() {
+      await this.baseElement().waitForDisplayed();
+   }
 }
 
 module.exports = new LoginPage();

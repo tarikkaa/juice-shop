@@ -1,6 +1,7 @@
+let WebButton = require("../elements/button.element");
 
 class BasePage{
-    get closeBannerButton() {return $('[aria-label="Close Welcome Banner"')};
+    get closeBannerButton() {return new WebButton($('[aria-label="Close Welcome Banner"'), "Close popup button")};
     get accountButtonHeader() {return $('#navbarAccount')};
     get loginButtonHeader() {return $('[id="navbarLoginButton"]')};
     get logoutButtonHeader() {return $('#navbarLogoutButton')};
