@@ -5,6 +5,7 @@ class BasePage{
     get accountButtonHeader() {return $('#navbarAccount')};
     get loginButtonHeader() {return $('[id="navbarLoginButton"]')};
     get logoutButtonHeader() {return $('#navbarLogoutButton')};
+    get basketButton() {return $('//span[contains(text(), "Your Basket")]')};
 
     async open() {
         await browser.url('/');
@@ -21,7 +22,7 @@ class BasePage{
     async logOut() {
         await this.accountButtonHeader.click();
         await this.logoutButtonHeader.click();
-    }
+    };
 }
 
 module.exports = BasePage;

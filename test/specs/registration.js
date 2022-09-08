@@ -16,13 +16,13 @@ describe('User registration', () => {
     it('Registration successful', async() => {
         await Registration.registration("test@test.com", "Passw0rd");
 
-        await expect($('//h1[text()="Login"]')).toBeExisting();
+        await expect(LoginPage.titleLoginWindow).toBeExisting();
     });
 
     it('Registration failed: Email must be unique', async() =>{
         await Registration.registration("test@test.com", "Passw0rd");
 
-        await expect($('.error')).toBeDisplayed();
+        await expect(Registration.errorEmailMustBeUnique).toBeDisplayed();
     }); 
 
     it('Registration: inactive "Register" button - all fields are empty', async() =>{
@@ -32,8 +32,9 @@ describe('User registration', () => {
     it('Registration: passwords do not match', async() => {
         await Registration.passwordField.setValue("Passw0rd");
         await Registration.repeatPasswordField.setValue("Passw0rd1");
+        await Registration.securityAnswer.click();
 
-        await expect($("//mat-error[contains(text(), 'Passwords')]")).toBeDisplayed();
+        await expect(Registration.errorPasswordsDoNotMatch).toBeDisplayed();
     });
 })
 

@@ -8,6 +8,8 @@ class Registration extends BasePage {
     get securityQuestion(){return $('//*[contains(text(), "maiden name")]')};
     get securityAnswer(){return $("#securityAnswerControl")};
     get registerButton(){return $('button[id="registerButton"]')};
+    get errorEmailMustBeUnique() {return $('.error')};
+    get errorPasswordsDoNotMatch() {return $("//mat-error[contains(text(), 'Passwords')]")};
 
     async registration(email, password){
         await this.emailField.setValue(email);

@@ -8,7 +8,8 @@ class LoginPage extends BasePage {
    get loginButton() {return $('[id="loginButton"]')};
    get registrationButton() {return $('[href="#/register"')};
    get baseElement() {return $('[href="#/register"')};
-   
+   get errorInvalidEmail() {return $('//div[contains(text(), "Invalid email or password.")]')};
+   get titleLoginWindow() {return $('//h1[text()="Login"]')};
 
    async login(email, passw) {
     await this.email.setValue(email);

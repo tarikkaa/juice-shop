@@ -8,10 +8,10 @@ describe('User registration', () => {
         await Registration.open();
         await Registration.openLoginPage();
         await LoginPage.goToRegistration();
-        await Registration.registration("test4@test.test", "Passw0rd4");
-        await LoginPage.login("test@test.test", "Passw0rd");
+        await Registration.registration("test111@test.test", "Passw0rd");
+        await LoginPage.login("test111gi@test.test", "Passw0rd");
 
-        await expect($('//span[contains(text(), "Your Basket")]')).toBeExisting();
+        await expect(LoginPage.basketButton).toBeExisting();
     });
 })
 
