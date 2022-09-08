@@ -9,6 +9,7 @@ class BasePage{
     async open() {
         await browser.url('/');
         await this.closeBannerButton.click();
+        await browser.fullscreenWindow();
         //await browser.keys("Escape");
      };
 

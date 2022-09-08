@@ -114,6 +114,9 @@ exports.config = {
     services: [
         ['selenium-standalone', { drivers: {firefox: "latest", chrome: '105.0.5195.52'} }]
     ],
+
+      
+    
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber

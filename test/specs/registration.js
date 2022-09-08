@@ -14,7 +14,7 @@ describe('User registration', () => {
         await LoginPage.goToRegistration();
     })
     it('Registration successful', async() => {
-        await Registration.registration("test6@test.com", "Passw0rd");
+        await Registration.registration("test@test.com", "Passw0rd");
 
         await expect($('//h1[text()="Login"]')).toBeExisting();
     });
