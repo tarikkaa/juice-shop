@@ -1,3 +1,4 @@
+let chai = require("chai");
 exports.config = {
     //
     // ====================
@@ -192,8 +193,9 @@ exports.config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      * @param {String} cid worker id (e.g. 0-0)
      */
-    // beforeSession: function (config, capabilities, specs, cid) {
-    // },
+    beforeSession: function (config, capabilities, specs, cid) {
+        global.chaiExpect = chai.expect;
+    },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.

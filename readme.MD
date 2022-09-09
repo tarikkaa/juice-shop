@@ -1,1 +1,1 @@
-// npm run test-ui --spec registration.js 
+ npm run test-ui --spec registration.js 

@@ -14,6 +14,11 @@ class BaseElement {
         await this.wdioElement.waitForDisplayed({ timeout: 7000 });
     };
 
+    async isDisplayed() {
+        console.log(`Element "${this.elementName}" is displayed`);
+        return await this.wdioElement.isDisplayed();
+    };
+
     async waitForClickable() {
         console.log(`Waiinting for "${this.elementName}" is clickable`);
         await this.wdioElement.waitForClickable({ timeout: 7000});

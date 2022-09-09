@@ -10,9 +10,10 @@
         "@wdio/mocha-framework": "^7.21.0",
         "@wdio/selenium-standalone-service": "^7.24.0",
         "@wdio/spec-reporter": "^7.21.0",
+        "chai": "^4.3.6",
         "randomstring": "^1.2.2"
     },
     "scripts": {
-        "test-ui": "./node_modules/.bin/wdio ./wdio.conf.js" 
+        "test-ui": "node_modules\\.bin\\wdio wdio.conf.js --spec registration.js"
     }
 }

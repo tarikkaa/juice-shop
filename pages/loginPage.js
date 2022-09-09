@@ -10,7 +10,7 @@ class LoginPage extends BasePage {
    get password() {return new InputElement($('[id="password"]'), "Password input field on login page")};
    get loginButton() {return new WebButton($('[id="loginButton"]'), "Login button on login page")};
    get registrationButton() {return new WebButton($('[href="#/register"'), "Not yet a customer? button")};
-  // get baseElement() {return $('[href="#/register"')};
+   get baseElement() {return new ViewElement($('[href="#/register"'), "Login page base element")};
    get errorInvalidEmail() {return new ViewElement($('//div[contains(text(), "Invalid email or password.")]'), "Error Invalid Email")};
    get titleLoginWindow() {return new ViewElement($('//h1[text()="Login"]'), "Title of login window")};
 
@@ -27,9 +27,9 @@ class LoginPage extends BasePage {
       await this.registrationButton.click();
    };
 
-   /*async waitForPageAvailable() {
-      await this.baseElement().waitForDisplayed();
-   };*/
+   async waitForPageAvailable() {
+      await this.baseElement.waitForDisplayed();
+   };
 }
 
 module.exports = new LoginPage();

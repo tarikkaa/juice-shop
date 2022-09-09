@@ -18,14 +18,15 @@ describe('User registration', () => {
         await LoginPage.openLoginPage();
         await LoginPage.goToRegistration();
       });
-    afterEach('Go to registration page', async() => {
+    /*afterEach('Go to registration page', async() => {
         await LoginPage.openLoginPage();
         await LoginPage.goToRegistration();
-    })
-    it('Registration successful', async() => {
+    })*/
+    it.only('Registration successful', async() => {
         await Registration.registration(randomEmail, randomPassword);
+        await LoginPage.waitForPageAvailable();
 
-        await expect(LoginPage.titleLoginWindow).toBeExisting();
+        chaiExpect(await LoginPage.baseElement.isDisplayed()).to.equal(true);
     });
 
     it('Registration failed: Email must be unique', async() =>{
