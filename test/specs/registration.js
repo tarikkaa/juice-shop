@@ -14,13 +14,13 @@ describe('User registration', () => {
         await LoginPage.goToRegistration();
     })
     it('Registration successful', async() => {
-        await Registration.registration("test@test.com", "Passw0rd");
+        await Registration.registration();
 
         await expect(LoginPage.titleLoginWindow).toBeExisting();
     });
 
     it('Registration failed: Email must be unique', async() =>{
-        await Registration.registration("test@test.com", "Passw0rd");
+        await Registration.registration();
 
         await expect(Registration.errorEmailMustBeUnique).toBeDisplayed();
     }); 

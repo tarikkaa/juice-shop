@@ -1,7 +1,6 @@
 
 let LoginPage = require("../../pages/loginPage.js");
 
-
 describe('My login', () => {
     before('Open page', function() {
         LoginPage.open();
