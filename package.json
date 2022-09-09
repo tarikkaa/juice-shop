@@ -12,5 +12,7 @@
         "@wdio/spec-reporter": "^7.21.0",
         "randomstring": "^1.2.2"
     },
-    "scripts": {}
+    "scripts": {
+        "test-ui": "./node_modules/.bin/wdio ./wdio.conf.js" 
+    }
 }

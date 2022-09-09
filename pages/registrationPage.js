@@ -17,8 +17,6 @@ class Registration extends BasePage {
     get errorPasswordsDoNotMatch() {return new ViewElement($("//mat-error[contains(text(), 'Passwords')]"), "Error: passwords do not match")};
      
     async registration(login, passw){
-        //let passw = this.randomPassword;
-        //await this.emailField.setValue(this.randomEmail);
         await this.emailField.setValue(login);
         await this.passwordField.setValue(passw);
         await this.repeatPasswordField.setValue(passw);
