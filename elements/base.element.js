@@ -19,9 +19,14 @@ class BaseElement {
         return await this.wdioElement.isDisplayed();
     };
 
+    async isExisting() {
+        console.log(`Element "${this.elementName}" is existing`);
+        return await this.wdioElement.isExisting();
+    };
+
     async waitForClickable() {
         console.log(`Waiinting for "${this.elementName}" is clickable`);
-        await this.wdioElement.waitForClickable({ timeout: 7000});
+        await this.wdioElement.waitForClickable();
     };
 }
 

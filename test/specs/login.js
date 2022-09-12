@@ -1,29 +1,47 @@
-
+let Registration = require("../../pages/registrationPage.js");
+let HomePage = require("../../pages/homePage.js");
 let LoginPage = require("../../pages/loginPage.js");
+let randomstring = require("randomstring");
+
+let randomEmail = randomstring.generate({
+  length: 5,
+  charset: "alphabetic"
+}) + "@test.com";
+
+let randomPassword = randomstring.generate({
+  length: 8,
+  charset: "alphanumeric"
+}) + "!!!";
+
+let wrongEmail = randomEmail + "a";
 
 describe('My login', () => {
-    before('Open page', function() {
-        LoginPage.open();
-      });
-      afterEach('LogOut', function() {
-        LoginPage.logOut();
-      });
+    before('Open page', async() => {
+      await HomePage.open();
+      await HomePage.openLoginPage();
+      await LoginPage.goToRegistration();
+      await Registration.registration(randomEmail, randomPassword);
+    });
+
+    afterEach('LogOut', async() => {
+      await HomePage.logOut();
+    }); 
+
     it('Login success', async() => {
-        //await LoginPage.open();
-        await LoginPage.openLoginPage();
-        await LoginPage.login("test@test.com", "Passw0rd");
+      await HomePage.openLoginPage();
+      await LoginPage.login(randomEmail, randomPassword);
+      await HomePage.pause(3);
 
-        await expect(LoginPage.basketButton).toBeExisting();
+      chaiExpect(await HomePage.basketButton.isExisting()).to.equal(true);
     });
 
-    it ('Login failed: Invalid email', async() => {
-        //await LoginPage.open();
-        await LoginPage.openLoginPage();
-        await LoginPage.login("t1est@test.com", "Passw0rd");
+    it('Login failed: Invalid email', async() => {
+      await HomePage.openLoginPage();
+      await LoginPage.login(wrongEmail, randomPassword);
+      await LoginPage.pause(2);
 
-        await expect(LoginPage.errorInvalidEmail).toBeDisplayed();
+      chaiExpect(await LoginPage.errorInvalidEmail.isDisplayed()).to.equal(true);
     });
-
 })
 
 
