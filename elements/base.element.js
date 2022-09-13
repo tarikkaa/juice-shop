@@ -9,9 +9,9 @@ class BaseElement {
         await this.wdioElement.click();
     };
 
-    async waitForDisplayed() {
+    async waitForDisplayed({ timeout, reverse, timeoutMsg, interval } = {}) {
         console.log(`Waiinting for "${this.elementName}" displayed`);
-        await this.wdioElement.waitForDisplayed({ timeout: 7000 });
+        await this.wdioElement.waitForDisplayed({ timeout, reverse, timeoutMsg, interval });
     };
 
     async isDisplayed() {

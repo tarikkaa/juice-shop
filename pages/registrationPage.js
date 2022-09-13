@@ -5,7 +5,7 @@ let ViewElement = require("../elements/view.element.js");
 let BasePage = require("../pages/basePage.js");
 
 class Registration extends BasePage {
-    
+    get baseElement() {return new ViewElement($("#repeatPasswordControl"), "Registration page base element")};
     get emailField() {return new InputElement($("#emailControl"), "Email input field on registration page")};
     get passwordField() {return new InputElement($("#passwordControl"), "Password input field on registration page")};
     get repeatPasswordField() {return new InputElement($("#repeatPasswordControl"), "Repeat Password input field on registration page")};
@@ -24,7 +24,6 @@ class Registration extends BasePage {
         await this.securityQuestion.click();
         await this.securityAnswer.setValue("mom");
         await this.registerButton.click();
-        
     };
 }
 

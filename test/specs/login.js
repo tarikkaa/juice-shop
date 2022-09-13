@@ -30,7 +30,7 @@ describe('My login', () => {
     it('Login success', async() => {
       await HomePage.openLoginPage();
       await LoginPage.login(randomEmail, randomPassword);
-      await HomePage.pause(3);
+      await HomePage.waitForPageAvailable();
 
       chaiExpect(await HomePage.basketButton.isExisting()).to.equal(true);
     });
@@ -38,7 +38,7 @@ describe('My login', () => {
     it('Login failed: Invalid email', async() => {
       await HomePage.openLoginPage();
       await LoginPage.login(wrongEmail, randomPassword);
-      await LoginPage.pause(2);
+      await LoginPage.waitForPageAvailable();
 
       chaiExpect(await LoginPage.errorInvalidEmail.isDisplayed()).to.equal(true);
     });

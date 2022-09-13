@@ -24,7 +24,7 @@ describe('User registration', () => {
     it('Registration and login successful', async () => {
         await Registration.registration(randomEmail, randomPassword);
         await LoginPage.login(randomEmail, randomPassword);
-        await HomePage.pause(3);
+        await HomePage.waitForPageAvailable();
 
         chaiExpect(await HomePage.basketButton.isExisting()).to.equal(true);
     });
