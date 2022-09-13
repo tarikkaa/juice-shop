@@ -31,7 +31,7 @@ describe('User registration', () => {
         await Registration.registration(randomEmail, randomPassword);
         await LoginPage.waitForPageAvailable();
 
-        chaiExpect(await LoginPage.baseElement.isDisplayed()).to.equal(true);
+        chaiExpect(await LoginPage.registrationButton.isDisplayed()).to.equal(true);
     });
 
     it('Registration failed: Email must be unique', async() =>{

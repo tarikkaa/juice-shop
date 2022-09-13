@@ -5,7 +5,7 @@ let ViewElement = require("../elements/view.element.js");
 let BasePage = require("../pages/basePage.js");
 
 class LoginPage extends BasePage {
-   get baseElement() {return new ViewElement($('[href="#/register"'), "Login page base element")};
+   baseElement() {return new ViewElement($('[href="#/register"'), "Login page base element")};
    get email() {return new InputElement($('[id="email"]'), "Email input field on login page")};
    get password() {return new InputElement($('[id="password"]'), "Password input field on login page")};
    get loginButton() {return new WebButton($('[id="loginButton"]'), "Login button on login page")};

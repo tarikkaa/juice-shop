@@ -25,7 +25,7 @@ class BasePage{
     };
     
     async waitForPageAvailable() {
-        await this.baseElement.waitForDisplayed({ timeout: 15000 });
+        await this.baseElement().waitForDisplayed({ timeout: 15000 });
      };
 }
 
