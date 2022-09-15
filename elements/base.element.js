@@ -28,6 +28,11 @@ class BaseElement {
         console.log(`Waiinting for "${this.elementName}" is clickable`);
         await this.wdioElement.waitForClickable();
     };
+
+    async waitForEnabled() {
+        console.log(`Waiinting for "${this.elementName}" is enabled`);
+        await this.wdioElement.waitForEnabled({timeout: 10000});
+    };
 }
 
 module.exports = BaseElement

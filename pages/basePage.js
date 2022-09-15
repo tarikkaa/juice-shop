@@ -27,6 +27,11 @@ class BasePage{
     async waitForPageAvailable() {
         await this.baseElement().waitForDisplayed({ timeout: 15000 });
      };
+
+     async switchWindow(title_or_url) {
+        await browser.switchWindow(title_or_url);
+        await browser.fullscreenWindow();
+     };
 }
 
 module.exports = BasePage;

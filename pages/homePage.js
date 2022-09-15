@@ -8,6 +8,8 @@ class HomePage extends BasePage {
     get loginButtonHeader() {return new WebButton($('[id="navbarLoginButton"]'), "Login button in account menu")};
     get logoutButtonHeader() {return new WebButton($('#navbarLogoutButton'), "Logout button in account menu")};
     get basketButton() {return new WebButton($('//span[contains(text(), "Your Basket")]'), "Basket button")};
+    get burgerButton() {return new WebButton($('//mat-icon[contains(text(), "menu")]'), "Burger button")};
+    get aboutUsButton() {return new WebButton($('//span[contains(text(), "About Us")]'), "About Us button")};
 
     async openLoginPage() {
         await this.accountButtonHeader.click();
@@ -20,6 +22,12 @@ class HomePage extends BasePage {
         if(await this.logoutButtonHeader.isExisting()){
             this.logoutButtonHeader.click();
         }else{this.loginButtonHeader.click()}
+    };
+
+    async goToAboutUspage(){
+        await this.burgerButton.click();
+        await this.aboutUsButton.waitForClickable();
+        await this.aboutUsButton.click();
     };
 }
 
