@@ -6,6 +6,11 @@ class InputElement extends BaseElement {
         console.log(`Enter "${value}" to the "${this.elementName}"`);
         await this.wdioElement.setValue(value);
     };
+
+    async clearValue(){
+        console.log(`Clear the "${this.elementName}"`);
+        await this.wdioElement.clearValue();
+    };
 }
 
 module.exports = InputElement;
