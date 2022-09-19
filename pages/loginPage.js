@@ -1,4 +1,5 @@
 
+
 let WebButton = require("../elements/button.element.js");
 let InputElement = require("../elements/input.element.js");
 let ViewElement = require("../elements/view.element.js");
@@ -15,13 +16,15 @@ class LoginPage extends BasePage {
 
 
    async login(email, passw) {
-
-    await this.email.setValue(email);
-    await this.password.setValue(passw);
-    await this.loginButton.click(); 
+      await allure.startStep(`Logging in the account with Login:${email} and Password:${passw}`);
+      await this.email.setValue(email);
+      await this.password.setValue(passw);
+      await this.loginButton.click();
+      await allure.endStep("passed"); 
    };
 
    async goToRegistration(){
+      await allure.addStep("Going to Registration page");
       await this.registrationButton.waitForClickable();
       await this.registrationButton.click();
    };

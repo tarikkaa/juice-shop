@@ -7,6 +7,7 @@ class AboutUsPage extends BasePage {
     get facebookButton() {return new WebButton($("[href*=facebook"), "Facebook button")};
 
     async goToFacebook() {
+        await allure.addStep('Opening Facebook page');
         await this.facebookButton.click();
     };
 }

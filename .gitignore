@@ -1,3 +1,5 @@
 node_modules
 package-lock.json
 creds.txt
+allure-report
+allure-results

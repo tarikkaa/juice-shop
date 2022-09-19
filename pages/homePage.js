@@ -2,6 +2,7 @@ let BasePage = require("./basePage");
 let WebButton = require("../elements/button.element");
 let ViewElement = require("../elements/view.element");
 
+
 class HomePage extends BasePage {
     baseElement() {return new ViewElement($('#navbarAccount'), "Home page base element")};
     get accountButtonHeader() {return new WebButton($('#navbarAccount'), "Account button")};
@@ -12,11 +13,13 @@ class HomePage extends BasePage {
     get aboutUsButton() {return new WebButton($('a[routerlink="/about"]'), "About Us button")};
 
     async openLoginPage() {
+        await allure.addStep('Opening Login page');
         await this.accountButtonHeader.click();
         await this.loginButtonHeader.click();
     };
 
     async logOut() {
+        await allure.addStep('Logging out from Juice shop');
         await this.accountButtonHeader.click();
 
         if(await this.logoutButtonHeader.isExisting()){
@@ -25,6 +28,7 @@ class HomePage extends BasePage {
     };
 
     async goToAboutUspage(){
+        await allure.addStep('Going to About Us page');
         await this.burgerButton.click();
         await this.aboutUsButton.waitForClickable();
         await this.aboutUsButton.click();

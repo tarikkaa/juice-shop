@@ -1,4 +1,4 @@
-let randomstring = require("randomstring");
+
 let WebButton = require("../elements/button.element.js");
 let InputElement = require("../elements/input.element.js");
 let ViewElement = require("../elements/view.element.js");
@@ -17,6 +17,7 @@ class Registration extends BasePage {
     get errorPasswordsDoNotMatch() {return new ViewElement($("//mat-error[contains(text(), 'Passwords')]"), "Error: passwords do not match")};
      
     async registration(login, passw){
+        await allure.startStep(`Account registration with Login:${login} and Password:${passw}`);
         await this.emailField.setValue(login);
         await this.passwordField.setValue(passw);
         await this.repeatPasswordField.setValue(passw);
@@ -24,6 +25,7 @@ class Registration extends BasePage {
         await this.securityQuestion.click();
         await this.securityAnswer.setValue("mom");
         await this.registerButton.click();
+        await allure.endStep("passed");
     };
 }
 

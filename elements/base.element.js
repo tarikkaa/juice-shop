@@ -25,7 +25,7 @@ class BaseElement {
     };
 
     async waitForClickable() {
-        console.log(`Waiinting for "${this.elementName}" is clickable`);
+        console.log(`Waitinting for "${this.elementName}" is clickable`);
         await this.wdioElement.waitForClickable();
     };
 

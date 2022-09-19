@@ -13,9 +13,11 @@ class FacebookLoginPage extends BasePage{
     
 
     async login(email, password) {
+        await allure.startStep(`Loggin in Facebook account with Login:${email}, and Password:${password}`);
         await this.emailField.setValue(email);                       
         await this.passwordField.setValue(password);                    
         await this.loginButton.click();
+        await allure.endStep(`passed`);
     };
 }
 

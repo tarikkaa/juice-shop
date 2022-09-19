@@ -5,15 +5,18 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@wdio/allure-reporter": "^7.24.0",
         "@wdio/cli": "^7.21.0",
         "@wdio/local-runner": "^7.21.0",
         "@wdio/mocha-framework": "^7.21.0",
         "@wdio/selenium-standalone-service": "^7.24.0",
         "@wdio/spec-reporter": "^7.21.0",
+        "allure-commandline": "^2.18.1",
         "chai": "^4.3.6",
         "randomstring": "^1.2.2"
     },
     "scripts": {
-        "test-ui": "node_modules\\.bin\\wdio wdio.conf.js --spec go_to_facebook.js"
+        "test-ui": "node_modules\\.bin\\wdio wdio.conf.js --spec",
+        "allure-report-open": "allure generate .\\allure-results -o .\\allure-report --clean && allure open .\\allure-report"
     }
 }
