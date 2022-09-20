@@ -16,7 +16,7 @@ describe("Facebook login scenario", () => {
         await aboutUsPage.goToFacebook();
         await aboutUsPage.switchWindow(facebookLoginPage.facebookURL);
         await facebookLoginPage.waitForPageAvailable();
-        await facebookLoginPage.login(, );
+        await facebookLoginPage.login("mmaliby5@gmail.com", "Passw0rd!!!");
         await facebookMainPage.waitForPageAvailable();
     });
 });

@@ -1,4 +1,6 @@
 let chai = require("chai");
+let allureReporter = require("@wdio/allure-reporter").default;
+
 exports.config = {
     //
     // ====================
@@ -139,7 +141,11 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec', ['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+    }]],
 
 
     
@@ -195,6 +201,7 @@ exports.config = {
      */
     beforeSession: function (config, capabilities, specs, cid) {
         global.chaiExpect = chai.expect;
+        global.allure = allureReporter;
     },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
@@ -246,8 +253,12 @@ exports.config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        if(!passed) {
+            let screen = await browser.takeScreenshot();
+            await allure.addAttachment("MyScreenshot", Buffer.from(screen, "base64"), "image/png");
+        }
+     },
 
 
     /**
@@ -290,8 +301,10 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    //onComplete: function(exitCode, config, capabilities, results) {    
+    //}, 
+   
+
     /**
     * Gets executed when a refresh happens.
     * @param {String} oldSessionId session ID of the old session
