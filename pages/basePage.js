@@ -29,16 +29,16 @@ class BasePage{
     };
     
     async waitForPageAvailable() {
-        await allure.startStep(`Waiting until page is displayed`);
+        await allure.addStep(`Waiting until page is displayed`);
         await this.baseElement().waitForDisplayed({ timeout: 15000 });
-        await allure.endStep(`passed`);
+        
      };
 
      async switchWindow(title_or_url) {
-        await allure.startStep(`Browser is switching window`);
+        await allure.addStep(`Browser is switching window`);
         await browser.switchWindow(title_or_url);
         await browser.maximizeWindow();
-        await allure.endStep(`passed`);
+        
      };
 }
 
