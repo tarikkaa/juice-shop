@@ -33,6 +33,12 @@ class BaseElement {
         console.log(`Waiinting for "${this.elementName}" is enabled`);
         await this.wdioElement.waitForEnabled({timeout: 10000});
     };
+
+    async waitForExist() {
+        console.log(`Waiinting for "${this.elementName}" exists`);
+        await this.wdioElement.waitForExist({timeout: 10000});
+    };
+
 }
 
 module.exports = BaseElement
