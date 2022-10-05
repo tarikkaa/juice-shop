@@ -38,7 +38,11 @@ class BasePage{
         await allure.addStep(`Browser is switching window`);
         await browser.switchWindow(title_or_url);
         await browser.maximizeWindow();
-        
+     };
+
+     async scrollIntoView(element) {
+        await allure.addStep(`Scrolling page into view the element`);
+        await element.scrollIntoView();
      };
 }
 

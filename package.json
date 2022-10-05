@@ -16,7 +16,7 @@
         "randomstring": "^1.2.2"
     },
     "scripts": {
-        "test-ui": "node_modules\\.bin\\wdio wdio.conf.js --spec wallet.js",
+        "test-ui": "node_modules\\.bin\\wdio wdio.conf.js --spec buy_product.js",
         "allure-report-open": "allure generate .\\allure-results -o .\\allure-report --clean && allure open .\\allure-report"
     }
 }
