@@ -40,10 +40,6 @@ class BasePage{
         await browser.maximizeWindow();
      };
 
-     async scrollIntoView(element) {
-        await allure.addStep(`Scrolling page into view the element`);
-        await element.scrollIntoView();
-     };
 }
 
 module.exports = BasePage;

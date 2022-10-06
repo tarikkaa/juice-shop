@@ -9,7 +9,7 @@ class MyPaymentOptionsPage extends BasePage {
     cardRadiobutton(cardName) {return new WebButton($(`//mat-cell[contains(text(), "${cardName}")]/..//mat-cell/mat-radio-button`), `Radio button of the card ${cardName}`)};
     get continueButton() {return new WebButton($('//mat-icon[contains(text(), " navigate_next ")]'), "Continue button")};
     //get backButton() {return new WebButton($('//mat-icon[contains(text(), " navigate_before ")]'), "Continue button")};
-    get addNewCard() {return new WebButton($('(//div/mat-expansion-panel)[1]'), "Add new card button")};
+    get addNewCardButton() {return new WebButton($('(//mat-expansion-panel-header[@role="button"])[1]'), "Add new card button")};
     get cardNameField() {return new InputElement($('(//div[contains(@class, "mat-expansion-panel-body")]//input)[1]'), "Card name field")};
     get cardNumberField() {return new InputElement($('(//div[contains(@class, "mat-expansion-panel-body")]//input)[2]'), "Card number field")};
     get cardMonthField() {return new DropDown($('(//div[contains(@class, "mat-expansion-panel-body")]//select)[1]'), "Card expirity month drop down")};
@@ -18,7 +18,7 @@ class MyPaymentOptionsPage extends BasePage {
 
     async addNewCard(name, number, month, year){
         await allure.addStep("Adding a new card");
-        await this.addNewCard.click();
+        await this.addNewCardButton.click();
         await this.cardNameField.setValue(name);
         await this.cardNumberField.setValue(number);
         await this.cardMonthField.selectByVisibleText(month);

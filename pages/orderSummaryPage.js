@@ -3,12 +3,12 @@ const ViewElement = require("../elements/view.element");
 const BasePage = require("./basePage");
 
 class OrderSummaryPage extends BasePage {
-    baseElement() {return new ViewElement($('//mat-card/button'), "Base element of the Order summary page")};
-    get placeOrederAndPayButton() {return new WebButton($('//mat-card/button'), "Place order and pay button")};
+    baseElement() {return new ViewElement($('button[id="checkoutButton"]'), "Base element of the Order summary page")};
+    get placeOrederAndPayButton() {return new WebButton($('button[id="checkoutButton"]'), "Place order and pay button")};
 
     async placeOrderAndPay() {
         await allure.addStep("Placing order and pay");
-        await this.placeOrderAndPay.click();
+        await this.placeOrederAndPayButton.click();
     };
 }
 
