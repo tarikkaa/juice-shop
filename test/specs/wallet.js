@@ -8,7 +8,7 @@ const randomHelper = require("./randomHelper");
 let randomEmail = randomHelper.randomString(5, "alphabetic") + "@test.com";
 let randomPassword = randomHelper.randomString(8, "alphanumeric") + "!!!";
 let cardName = randomHelper.randomString(10, "aphabetic");
-let cardNumber = randomHelper.randomString(16, "numeric");
+let cardNumber = randomHelper.randomString(16, "123456789");
 let cardMonth = randomHelper.randomNumber(1, 12);
 let cardYear = randomHelper.randomNumber(2080, 2099);
 

@@ -24,7 +24,7 @@ class AddAddressPage extends BasePage{
         await this.addressField.setValue(address);
         await this.stateField.setValue(state);
         await this.submitButton.click();
-    }
-}
+    };
+};
 
 module.exports = new AddAddressPage();

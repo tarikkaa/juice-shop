@@ -17,7 +17,7 @@ class MyPaymentOptionsPage extends BasePage {
     get submitButton() {return new WebButton($('[id="submitButton"]'), "Submit button")};
 
     async addNewCard(name, number, month, year){
-        await allure.addStep("Adding a new card");
+        await allure.addStep(`Adding a new card: name: "${name}", number: "${number}", expirity month: "${month}", expirity year: "${year}"`);
         await this.addNewCardButton.click();
         await this.cardNameField.setValue(name);
         await this.cardNumberField.setValue(number);
