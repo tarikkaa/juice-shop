@@ -1,18 +1,10 @@
 let Registration = require("../../pages/registrationPage.js");
 let LoginPage = require("../../pages/loginPage.js");
-let randomstring = require("randomstring");
 const HomePage = require("../../pages/homePage.js");
+const randomHelper = require("./randomHelper");
 
-let randomEmail = randomstring.generate({
-    length: 5,
-    charset: "alphabetic"
-}) + "@test.com";
-
-let randomPassword = randomstring.generate({
-    length: 8,
-    charset: "alphanumeric"
-}) + "!!!";
-
+let randomEmail = randomHelper.randomString(5, "alphabetic") + "@test.com";
+let randomPassword = randomHelper.randomString(8, "alphanumeric") + "!!!";
 let randomPasswordNotEqual = randomPassword + 1;
 
 describe('User registration', () => {
@@ -51,7 +43,7 @@ describe('User registration', () => {
 
         await chaiExpect(await Registration.errorPasswordsDoNotMatch.isDisplayed()).to.equal(true);
     });
-})
+});
 
 
 

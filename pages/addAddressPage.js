@@ -4,15 +4,14 @@ const ViewElement = require("../elements/view.element");
 const BasePage = require("./basePage");
 
 class AddAddressPage extends BasePage{
-    baseElement() {return new ViewElement($('(//div/mat-card//input)[1]'), "Base element of the Add address page")}
-    get submitButton() {return new WebButton($('(//div/mat-card//button)[2]'), "Submit button")};
-    get backButton() {return new WebButton($('(//div/mat-card//button)[1]'), "Back button")};
-    get countryField() {return new InputElement($('(//div/mat-card//input)[1]'), "Country input field")};
-    get nameField() {return new InputElement($('(//div/mat-card//input)[2]'), "Name input field")};
-    get mobileNumberField() {return new InputElement($('(//div/mat-card//input)[3]'), "Mobile number input field")};
-    get zipCodeField() {return new InputElement($('(//div/mat-card//input)[4]'), "ZIP code input field")};
-    get cityField() {return new InputElement($('(//div/mat-card//input)[5]'), "City input field")};
-    get stateField() {return new InputElement($('(//div/mat-card//input)[6]'), "State input field")};
+    baseElement() {return new ViewElement($('#address'), "Base element of the Add address page")}
+    get submitButton() {return new WebButton($('button[id="submitButton"]'), "Submit button")};
+    get countryField() {return new InputElement($('input[placeholder*="country"]'), "Country input field")};
+    get nameField() {return new InputElement($('input[placeholder*="name"]'), "Name input field")};
+    get mobileNumberField() {return new InputElement($('input[placeholder*="number"]'), "Mobile number input field")};
+    get zipCodeField() {return new InputElement($('input[placeholder*="ZIP"]'), "ZIP code input field")};
+    get cityField() {return new InputElement($('input[placeholder*="city"]'), "City input field")};
+    get stateField() {return new InputElement($('input[placeholder*="state"]'), "State input field")};
     get addressField() {return new InputElement($('#address'), "Address input field")};
 
     async addAddress(country, name, number, zip, city, address, state) {

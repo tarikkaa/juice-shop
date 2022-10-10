@@ -1,7 +1,7 @@
 const aboutUsPage = require("../../pages/aboutUsPage");
 const facebookLoginPage = require("../../pages/facebookLoginPage");
 const facebookMainPage = require("../../pages/facebookMainPage");
-const homePage = require("../../pages/homePage")
+const homePage = require("../../pages/homePage");
 
 
 describe("Facebook login scenario", () => {
