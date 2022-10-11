@@ -67,8 +67,8 @@ describe("Shop cases", () => {
     });
 
     it("Adding and deleting items from the basket", async() => {
-        await 
         await orderCompletionPage.goToHomepage();
+        await HomePage.waitForPageAvailable();
         await HomePage.addToBasket(item);
         await HomePage.addToBasket(item2);
         await HomePage.goToBasket();
