@@ -12,6 +12,7 @@ const randomHelper = require("./randomHelper");
 const orderCompletionPage = require("../../pages/orderCompletionPage");
 
 
+
 let randomEmail = randomHelper.randomString(5, "alphabetic") + "@test.com";
 let randomPassword = randomHelper.randomString(8, "alphanumeric") + "!!!";
 let country = randomHelper.randomString(7, "aphabetic");
@@ -28,6 +29,7 @@ let cardYear = randomHelper.randomNumber(2080, 2099);
 let deliverySpeed = randomHelper.randomFromList(["rocket","shipping-fast","truck"]);
 let item = "Apple Juice (1000ml)";
 let item2 = " Apple Pomace ";
+let itemOnlyOneLeft = ' Juice Shop "Permafrost" 2020 Edition ';
 
 
 describe("Shop cases", () => {
@@ -79,8 +81,8 @@ describe("Shop cases", () => {
 
     it("Buy the item that Only 1 left", async() => {
         await basketPage.goToHomepage();
-        await HomePage.itemInShopOnlyOneLeft.scrollIntoView();
-        await HomePage.addToBasketOnlyOneLeft();
+        await HomePage.itemInShop(itemOnlyOneLeft).scrollIntoView();
+        await HomePage.addToBasket(itemOnlyOneLeft);
         await HomePage.goToBasket();
         await basketPage.waitForPageAvailable();
         await basketPage.checkout();
@@ -93,6 +95,10 @@ describe("Shop cases", () => {
         await orderSummaryPage.waitForPageAvailable();
         await orderSummaryPage.placeOrderAndPay();
         await orderCompletionPage.waitForPageAvailable();
-        chaiExpect(await orderCompletionPage.getPageTitle()).to.equal("Thank you for your purchase!");
+        await orderCompletionPage.goToHomepage();
+        await HomePage.waitForPageAvailable();
+        await HomePage.itemInShop(itemOnlyOneLeft).scrollIntoView();
+        await HomePage.addToBasket(itemOnlyOneLeft);
+        chaiExpect(await HomePage.basketCounter.getText()).to.equal("0");
     });
 });

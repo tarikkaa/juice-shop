@@ -14,10 +14,10 @@ class HomePage extends BasePage {
     get basketButton() {return new WebButton($('button[routerlink="/basket"]'), "Basket button")};
     get burgerButton() {return new WebButton($('//mat-toolbar-row/button[1]'), "Burger button")};
     get aboutUsButton() {return new WebButton($('a[routerlink="/about"]'), "About Us button")};
-    itemInShop(item) {return new ViewElement($(`//div[contains(text(), "${item}")]`), `Item in the shop: ${item}`)};
-    addToBasketButton(item) {return new WebButton($(`//div[contains(text(), "${item}")]/following::button[1]`), "Add to basket button")};
-    get addToBasketButtonOnlyOneLeft() {return new WebButton($(`(//*[contains(text(), "Only 1 left")])[1]/following::button[1]`), "Add to basket button for item that Only 1 left")};
-    get itemInShopOnlyOneLeft() {return new ViewElement($(`(//*[contains(text(), "Only 1 left")])[1]`), "Item that Only 1 left")};
+    itemInShop(item) {return new ViewElement($(`//div[contains(text(), '${item}')]`), `Item in the shop: ${item}`)};
+    addToBasketButton(item) {return new WebButton($(`//div[contains(text(), '${item}')]/following::button[1]`), "Add to basket button")};
+    get basketCounter() {return new ViewElement($('//span[contains(@class, "fa-layers-counter")]'), "Basket counter")};
+    
 
     async openLoginPage() {
         await allure.addStep('Opening Login page');
@@ -66,11 +66,6 @@ class HomePage extends BasePage {
         await allure.addStep("Going to basket");
         await this.basketButton.click();
     };
-
-    async addToBasketOnlyOneLeft() {
-        await allure.addStep("Adding to basket item that Only 1 left");
-        await this.addToBasketButtonOnlyOneLeft.click();
-    }
 };
 
 module.exports = new HomePage();
