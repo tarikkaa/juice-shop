@@ -6,6 +6,7 @@ let ViewElement = require("../elements/view.element");
 class HomePage extends BasePage {
     baseElement() {return new ViewElement($('#navbarAccount'), "Home page base element")};
     get accountButtonHeader() {return new WebButton($('#navbarAccount'), "Account button")};
+    get userProfileButton() {return new WebButton($('//div[@tabindex="-1"]/div/button[1]'), "User profile button")};
     get ordersAndPaymentsButton() {return new WebButton($('//div[@tabindex="-1"]/div/button[2]'), "Orders&Payments button")};
     get digitalWalletButton() {return new WebButton($('button[routerlink="/wallet"]'), "Digital Wallet button")};
     get loginButtonHeader() {return new WebButton($('[id="navbarLoginButton"]'), "Login button in account menu")};
@@ -44,7 +45,13 @@ class HomePage extends BasePage {
         await this.ordersAndPaymentsButton.click();
         await this.digitalWalletButton.waitForExist();
         await this.digitalWalletButton.click();
-    }
-}
+    };
+
+    async goToUserProfilePage() {
+        await allure.addStep("Going to user's profile page");
+        await this.accountButtonHeader.click();
+        await this.userProfileButton.click()
+    };
+};
 
 module.exports = new HomePage();

@@ -11,6 +11,8 @@ class BasePage{
         }
     }
     get closeBannerButton() {return new WebButton($('[aria-label="Close Welcome Banner"'), "Close popup button")};
+    get homepageButton() {return new WebButton($('a[href="./#/"]'), "Homepage button")};
+
     
 
     async open() {
@@ -38,7 +40,16 @@ class BasePage{
         await allure.addStep(`Browser is switching window`);
         await browser.switchWindow(title_or_url);
         await browser.maximizeWindow();
-        
+     };
+
+     async goToHomepage() {
+        await allure.addStep("Going to Homepage");
+        await this.homepageButton.click();
+     }
+
+     async refreshThePage() {
+        await allure.addStep("Refreshing the page");
+        await browser.refresh();
      };
 }
 
