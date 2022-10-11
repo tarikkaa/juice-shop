@@ -32,7 +32,7 @@ let item2 = " Apple Pomace ";
 
 describe("Shop cases", () => {
 
-    beforeEach('Open page', async() => {
+    before('Open page', async() => {
         await HomePage.open();
         await HomePage.openLoginPage();
         await LoginPage.goToRegistration();
@@ -64,13 +64,35 @@ describe("Shop cases", () => {
         chaiExpect(await orderCompletionPage.getPageTitle()).to.equal("Thank you for your purchase!");
     });
 
-    it.only("Adding and deleting items from the basket", async() => {
+    it("Adding and deleting items from the basket", async() => {
+        await 
+        await orderCompletionPage.goToHomepage();
         await HomePage.addToBasket(item);
         await HomePage.addToBasket(item2);
         await HomePage.goToBasket();
         await basketPage.waitForPageAvailable();
         await basketPage.deleteItem(item);
         await basketPage.deleteItem(item2);
+        await basketPage.pause(2);
         chaiExpect(await basketPage.checkoutButton.isClickable()).to.equal(false);
+    });
+
+    it("Buy the item that Only 1 left", async() => {
+        await basketPage.goToHomepage();
+        await HomePage.itemInShopOnlyOneLeft.scrollIntoView();
+        await HomePage.addToBasketOnlyOneLeft();
+        await HomePage.goToBasket();
+        await basketPage.waitForPageAvailable();
+        await basketPage.checkout();
+        await selectAddressPage.waitForPageAvailable();
+        await selectAddressPage.selectAddressAndContinue(name);
+        await deliveryAddressPage.waitForPageAvailable();
+        await deliveryAddressPage.selectDeliverySpeed(deliverySpeed);
+        await myPaymentOptionsPage.waitForPageAvailable();
+        await myPaymentOptionsPage.selectCardAndProceed(cardName);
+        await orderSummaryPage.waitForPageAvailable();
+        await orderSummaryPage.placeOrderAndPay();
+        await orderCompletionPage.waitForPageAvailable();
+        chaiExpect(await orderCompletionPage.getPageTitle()).to.equal("Thank you for your purchase!");
     });
 });
