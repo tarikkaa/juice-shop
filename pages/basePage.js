@@ -45,12 +45,13 @@ class BasePage{
      async goToHomepage() {
         await allure.addStep("Going to Homepage");
         await this.homepageButton.click();
-     }
+     };
 
      async refreshThePage() {
         await allure.addStep("Refreshing the page");
         await browser.refresh();
      };
+
 }
 
 module.exports = BasePage;

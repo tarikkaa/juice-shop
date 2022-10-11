@@ -14,6 +14,8 @@ class HomePage extends BasePage {
     get basketButton() {return new WebButton($('button[routerlink="/basket"]'), "Basket button")};
     get burgerButton() {return new WebButton($('//mat-toolbar-row/button[1]'), "Burger button")};
     get aboutUsButton() {return new WebButton($('a[routerlink="/about"]'), "About Us button")};
+    itemInShop(item) {return new ViewElement($(`//div[contains(text(), "${item}")]`), `Item in the shop: ${item}`)};
+    addToBasketButton(item) {return new WebButton($(`//div[contains(text(), "${item}")]/following::button[1]`), "Add to basket button")};
     
 
     async openLoginPage() {
@@ -47,10 +49,21 @@ class HomePage extends BasePage {
         await this.digitalWalletButton.click();
     };
 
+
     async goToUserProfilePage() {
         await allure.addStep("Going to user's profile page");
         await this.accountButtonHeader.click();
         await this.userProfileButton.click()
+    };
+    
+    async addToBasket(item) {
+        await allure.addStep(`Adding to basket item: ${item}`);
+        await this.addToBasketButton(item).click();
+    };
+
+    async goToBasket() {
+        await allure.addStep("Going to basket");
+        await this.basketButton.click();
     };
 };
 

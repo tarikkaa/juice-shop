@@ -8,6 +8,11 @@ class ViewElement extends BaseElement {
         console.log(`The text is "${text}"`);
         return text;
     };
+
+    async scrollIntoView() {
+        console.log(`Scrolling page into view the element: ${this.elementName}`);
+        await this.wdioElement.scrollIntoView();
+     };
 }
 
 module.exports = ViewElement;
