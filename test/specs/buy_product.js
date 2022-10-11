@@ -11,6 +11,7 @@ const orderSummaryPage = require("../../pages/orderSummaryPage");
 const randomHelper = require("./randomHelper");
 const orderCompletionPage = require("../../pages/orderCompletionPage");
 
+
 let randomEmail = randomHelper.randomString(5, "alphabetic") + "@test.com";
 let randomPassword = randomHelper.randomString(8, "alphanumeric") + "!!!";
 let country = randomHelper.randomString(7, "aphabetic");
@@ -26,11 +27,12 @@ let cardMonth = randomHelper.randomNumber(1, 12);
 let cardYear = randomHelper.randomNumber(2080, 2099);
 let deliverySpeed = randomHelper.randomFromList(["rocket","shipping-fast","truck"]);
 let item = "Apple Juice (1000ml)";
+let item2 = " Apple Pomace ";
 
 
 describe("Shop cases", () => {
 
-    before('Open page', async() => {
+    beforeEach('Open page', async() => {
         await HomePage.open();
         await HomePage.openLoginPage();
         await LoginPage.goToRegistration();
@@ -39,7 +41,7 @@ describe("Shop cases", () => {
         await HomePage.waitForPageAvailable();
     });
     
-    it('Add a card and buy a product', async() => {
+    it('Add a card/address and buy a product', async() => {
         await HomePage.itemInShop(item).scrollIntoView();
         await HomePage.addToBasket(item);
         await HomePage.goToBasket();
@@ -60,5 +62,15 @@ describe("Shop cases", () => {
         await orderSummaryPage.placeOrderAndPay();
         await orderCompletionPage.waitForPageAvailable();
         chaiExpect(await orderCompletionPage.getPageTitle()).to.equal("Thank you for your purchase!");
+    });
+
+    it.only("Adding and deleting items from the basket", async() => {
+        await HomePage.addToBasket(item);
+        await HomePage.addToBasket(item2);
+        await HomePage.goToBasket();
+        await basketPage.waitForPageAvailable();
+        await basketPage.deleteItem(item);
+        await basketPage.deleteItem(item2);
+        chaiExpect(await basketPage.checkoutButton.isClickable()).to.equal(false);
     });
 });
