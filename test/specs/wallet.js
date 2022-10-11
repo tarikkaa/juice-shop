@@ -3,36 +3,14 @@ const digitalWalletPaymentPage = require("../../pages/digitalWalletPaymentPage")
 const HomePage = require("../../pages/homePage");
 const LoginPage = require("../../pages/loginPage");
 let Registration = require("../../pages/registrationPage.js");
-let randomstring = require("randomstring");
+const randomHelper = require("./randomHelper");
 
-let randomEmail = randomstring.generate({
-    length: 5,
-    charset: "alphabetic"
-}) + "@test.com";
-
-let randomPassword = randomstring.generate({
-    length: 8,
-    charset: "alphanumeric"
-}) + "!!!";
-
-let cardName = randomstring.generate({
-    length: 10,
-    charset: "aphabetic"
-});
-
-let cardNumber = randomstring.generate({
-    length: 16,
-    charset: "numeric"
-});
-
-function random(min, max) {  
-    return Math.floor(
-      Math.random() * (max - min + 1) + min
-    )
-  }
-
-let cardMonth = random(1, 12);
-let cardYear = random(2080, 2099);
+let randomEmail = randomHelper.randomString(5, "alphabetic") + "@test.com";
+let randomPassword = randomHelper.randomString(8, "alphanumeric") + "!!!";
+let cardName = randomHelper.randomString(10, "aphabetic");
+let cardNumber = randomHelper.randomString(16, "123456789");
+let cardMonth = randomHelper.randomNumber(1, 12);
+let cardYear = randomHelper.randomNumber(2080, 2099);
 
 describe("Wallet cases", () => {
 
@@ -52,7 +30,7 @@ describe("Wallet cases", () => {
         let money = 500;
         await digitalWalletPage.addMoneyAndContinue(money);
         await digitalWalletPaymentPage.waitForPageAvailable();
-        await digitalWalletPaymentPage.addNewCard(cardName, cardNumber, cardMonth, "2084");
+        await digitalWalletPaymentPage.addNewCard(cardName, cardNumber, cardMonth, cardYear);
         await digitalWalletPaymentPage.selectCard(cardName);
         await digitalWalletPaymentPage.continueButton.click();
         let cardEndAmount = await digitalWalletPage.getWalletBalance();
@@ -73,4 +51,4 @@ describe("Wallet cases", () => {
         chaiExpect(cardEndAmount - cardStartAmount).to.equal(money);
 
     });
-})
+});
