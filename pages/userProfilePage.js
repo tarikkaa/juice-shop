@@ -14,7 +14,7 @@ class UserProfilePage extends BasePage {
     
     async uploadProfilePicture(imagePath){
         await allure.addStep(`Uploading file from the path: ${imagePath}`);
-        let filePath = path.join(imagePath);
+        let filePath = path.join(__dirname, imagePath);
         let remoteFilePath = await browser.uploadFile(filePath);
         await this.chooseFile.setValue(remoteFilePath);
         await this.uploadPictureButton.click()

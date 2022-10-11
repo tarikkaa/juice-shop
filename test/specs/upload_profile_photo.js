@@ -4,7 +4,7 @@ const loginPage = require("../../pages/loginPage");
 const registration = require("../../pages/registrationPage.js");
 const randomstring = require("randomstring");
 
-let filePath = "C:\\Users\\taras.andrushchak\\Documents\\JS\\juice-shop-test\\test\\data\\profile_photo.png";
+let filePath = "../test/data/profile_photo.png";
 let fileLink = "https://m.media-amazon.com/images/I/91-Db4L6xjL.png";
 
 
