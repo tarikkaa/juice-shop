@@ -12,6 +12,7 @@ const randomHelper = require("./randomHelper");
 const orderCompletionPage = require("../../pages/orderCompletionPage");
 
 
+
 let randomEmail = randomHelper.randomString(5, "alphabetic") + "@test.com";
 let randomPassword = randomHelper.randomString(8, "alphanumeric") + "!!!";
 let country = randomHelper.randomString(7, "aphabetic");
@@ -28,11 +29,12 @@ let cardYear = randomHelper.randomNumber(2080, 2099);
 let deliverySpeed = randomHelper.randomFromList(["rocket","shipping-fast","truck"]);
 let item = "Apple Juice (1000ml)";
 let item2 = " Apple Pomace ";
+let itemOnlyOneLeft = ' Juice Shop "Permafrost" 2020 Edition ';
 
 
 describe("Shop cases", () => {
 
-    beforeEach('Open page', async() => {
+    before('Open page', async() => {
         await HomePage.open();
         await HomePage.openLoginPage();
         await LoginPage.goToRegistration();
@@ -64,13 +66,39 @@ describe("Shop cases", () => {
         chaiExpect(await orderCompletionPage.getPageTitle()).to.equal("Thank you for your purchase!");
     });
 
-    it.only("Adding and deleting items from the basket", async() => {
+    it("Adding and deleting items from the basket", async() => {
+        await orderCompletionPage.goToHomepage();
+        await HomePage.waitForPageAvailable();
         await HomePage.addToBasket(item);
         await HomePage.addToBasket(item2);
         await HomePage.goToBasket();
         await basketPage.waitForPageAvailable();
         await basketPage.deleteItem(item);
         await basketPage.deleteItem(item2);
+        await basketPage.pause(2);
         chaiExpect(await basketPage.checkoutButton.isClickable()).to.equal(false);
+    });
+
+    it("Buy the item that Only 1 left", async() => {
+        await basketPage.goToHomepage();
+        await HomePage.itemInShop(itemOnlyOneLeft).scrollIntoView();
+        await HomePage.addToBasket(itemOnlyOneLeft);
+        await HomePage.goToBasket();
+        await basketPage.waitForPageAvailable();
+        await basketPage.checkout();
+        await selectAddressPage.waitForPageAvailable();
+        await selectAddressPage.selectAddressAndContinue(name);
+        await deliveryAddressPage.waitForPageAvailable();
+        await deliveryAddressPage.selectDeliverySpeed(deliverySpeed);
+        await myPaymentOptionsPage.waitForPageAvailable();
+        await myPaymentOptionsPage.selectCardAndProceed(cardName);
+        await orderSummaryPage.waitForPageAvailable();
+        await orderSummaryPage.placeOrderAndPay();
+        await orderCompletionPage.waitForPageAvailable();
+        await orderCompletionPage.goToHomepage();
+        await HomePage.waitForPageAvailable();
+        await HomePage.itemInShop(itemOnlyOneLeft).scrollIntoView();
+        await HomePage.addToBasket(itemOnlyOneLeft);
+        chaiExpect(await HomePage.basketCounter.getText()).to.equal("0");
     });
 });
