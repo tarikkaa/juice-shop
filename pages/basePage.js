@@ -11,7 +11,7 @@ class BasePage{
         }
     }
     get closeBannerButton() {return new WebButton($('[aria-label="Close Welcome Banner"'), "Close popup button")};
-    get homepageButton() {return new WebButton($('a[href="./#/"]'), "Homepage button")};
+    get homepageButton() {return new WebButton($('img[alt="OWASP Juice Shop"]'), "Homepage button")};
 
     
 

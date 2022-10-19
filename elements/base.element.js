@@ -40,4 +40,4 @@ class BaseElement {
     };
 }
 
-module.exports = BaseElement
+module.exports = BaseElement;
