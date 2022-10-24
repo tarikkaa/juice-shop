@@ -2,21 +2,16 @@ const homePage = require("../../pages/homePage");
 const userProfilePage = require("../../pages/userProfilePage");
 const loginPage = require("../../pages/loginPage");
 const registration = require("../../pages/registrationPage.js");
-const randomstring = require("randomstring");
+const randomHelper = require("./randomHelper");
+
+let randomEmail = randomHelper.randomString(5, "alphabetic") + "@test.com";
+let randomPassword = randomHelper.randomString(8, "alphanumeric") + "!!!";
 
 let filePath = "../test/data/profile_photo.png";
 let fileLink = "https://m.media-amazon.com/images/I/91-Db4L6xjL.png";
 
 
-let randomEmail = randomstring.generate({
-    length: 5,
-    charset: "alphabetic"
-}) + "@test.com";
 
-let randomPassword = randomstring.generate({
-    length: 8,
-    charset: "alphanumeric"
-}) + "!!!";
 
 
 describe("User profile TC's", () => {

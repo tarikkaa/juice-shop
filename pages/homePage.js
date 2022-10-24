@@ -17,6 +17,8 @@ class HomePage extends BasePage {
     itemInShop(item) {return new ViewElement($(`//div[contains(text(), "${item}")]`), `Item in the shop: ${item}`)};
     addToBasketButton(item) {return new WebButton($(`//div[contains(text(), "${item}")]/following::button[1]`), "Add to basket button")};
     get customerFeedbackButton() {return new WebButton($('a[routerlink="/contact"]'), "Customer feedback button")};
+    get basketCounter() {return new ViewElement($('//span[contains(@class, "fa-layers-counter")]'), "Basket counter")};
+
     
 
     async openLoginPage() {
