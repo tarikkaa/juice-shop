@@ -9,9 +9,9 @@ class SliderElement extends BaseElement {
     };
 
     async getLocation(){
-        console.log(`Getting location`);
+        console.log(`Getting location of the element: ${this.elementName}`);
         location = await this.wdioElement.getLocation();
-        console.log(location);
+        return location;
     };  
 }
 
