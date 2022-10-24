@@ -14,9 +14,11 @@ class HomePage extends BasePage {
     get basketButton() {return new WebButton($('button[routerlink="/basket"]'), "Basket button")};
     get burgerButton() {return new WebButton($('//mat-toolbar-row/button[1]'), "Burger button")};
     get aboutUsButton() {return new WebButton($('a[routerlink="/about"]'), "About Us button")};
-    itemInShop(item) {return new ViewElement($(`//div[contains(text(), '${item}')]`), `Item in the shop: ${item}`)};
-    addToBasketButton(item) {return new WebButton($(`//div[contains(text(), '${item}')]/following::button[1]`), "Add to basket button")};
+    itemInShop(item) {return new ViewElement($(`//div[contains(text(), "${item}")]`), `Item in the shop: ${item}`)};
+    addToBasketButton(item) {return new WebButton($(`//div[contains(text(), "${item}")]/following::button[1]`), "Add to basket button")};
+    get customerFeedbackButton() {return new WebButton($('a[routerlink="/contact"]'), "Customer feedback button")};
     get basketCounter() {return new ViewElement($('//span[contains(@class, "fa-layers-counter")]'), "Basket counter")};
+
     
 
     async openLoginPage() {
@@ -65,6 +67,13 @@ class HomePage extends BasePage {
     async goToBasket() {
         await allure.addStep("Going to basket");
         await this.basketButton.click();
+    };
+
+    async goToCustomerFeedbackPage() {
+        await allure.addStep("Going to the customer feedback page");
+        await this.burgerButton.click();
+        await this.customerFeedbackButton.waitForClickable();
+        await this.customerFeedbackButton.click();
     };
 };
 
