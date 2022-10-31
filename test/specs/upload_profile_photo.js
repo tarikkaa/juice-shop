@@ -11,9 +11,6 @@ let filePath = "../test/data/profile_photo.png";
 let fileLink = "https://m.media-amazon.com/images/I/91-Db4L6xjL.png";
 
 
-
-
-
 describe("User profile TC's", () => {
 
     before('Open page', async() => {
@@ -33,7 +30,7 @@ describe("User profile TC's", () => {
     it('Upload user photo', async() => {
         await homePage.goToUserProfilePage();
         await userProfilePage.waitForPageAvailable();
-        await userProfilePage.uploadProfilePicture(filePath);
+        await userProfilePage.uploadProfilePicture_2(filePath);
         await userProfilePage.pause(2);   
     });
 

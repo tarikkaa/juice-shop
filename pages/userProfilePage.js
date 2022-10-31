@@ -18,8 +18,15 @@ class UserProfilePage extends BasePage {
         let remoteFilePath = await browser.uploadFile(filePath);
         await this.chooseFile.setValue(remoteFilePath);
         await this.uploadPictureButton.click()
-    };
+    }; 
 
+    async uploadProfilePicture_2(imagePath){
+        await allure.addStep(`Uploading file from the path: ${imagePath}`);
+        let filePath = path.join(__dirname, imagePath);
+        await this.chooseFile.setValue(filePath);
+        await this.uploadPictureButton.click()
+    }; 
+    
     async linkProfileImage(link) {
         await allure.addStep("Linking image to the user profile");
         await this.imageUrlField.setValue(link);

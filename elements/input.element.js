@@ -11,6 +11,7 @@ class InputElement extends BaseElement {
         console.log(`Clear the "${this.elementName}"`);
         await this.wdioElement.clearValue();
     };
+    
 }
 
 module.exports = InputElement;

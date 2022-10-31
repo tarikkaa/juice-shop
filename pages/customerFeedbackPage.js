@@ -23,8 +23,12 @@ class CustomerFeedbackPage extends BasePage {
     };
 
     async sliderMoveRating() {
-        await this.sliderToggle.click();
-        await this.sliderToggle.dragAndDrop(56, 360); 
+        if(driver.isChrome === true){
+            await this.sliderToggle.click();
+            await this.sliderToggle.dragAndDrop(56, 360);
+        }else{
+            await this.sliderToggle.dragAndDrop(56, 360);
+        }
     };
 
     async enterCaptchaResult() {
