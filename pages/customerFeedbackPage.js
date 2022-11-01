@@ -23,7 +23,7 @@ class CustomerFeedbackPage extends BasePage {
     };
 
     async sliderMoveRating() {
-        if(driver.isChrome === true){
+        if(driver.isChrome){
             await this.sliderToggle.click();
             await this.sliderToggle.dragAndDrop(56, 360);
         }else{
