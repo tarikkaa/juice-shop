@@ -16,8 +16,6 @@
         "randomstring": "^1.2.2"
     },
     "scripts": {
-
-
         "test-ui": "node_modules\\.bin\\wdio wdio.conf.js --spec feedback.js",
         "allure-report-open": "allure generate .\\allure-results -o .\\allure-report --clean && allure open .\\allure-report"
     }
